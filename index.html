@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #001eff, #00aaff, #001a66);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#screen {
+    width: 100%;
+    height: 75vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.kiss {
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ffb6e6;
+    animation: fly 2.3s linear forwards;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-100vh) scale(1.4);
+        opacity: 0;
+    }
+}
+
+h1 {
+    color: white;
+    font-size: 55px;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px white, 0 0 30px #ffb6e6;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px white, 0 0 50px pink; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="screen"></div>
+
+<h1></h1>
+
+<script>
+const screen = document.getElementById("screen");
+let count = 0;
+
+const timer = setInterval(() => {
+    if (count >= 1000) {
+        clearInterval(timer);
+        return;
+    }
+
+    const kiss = document.createElement("div");
+    kiss.className = "kiss";
+    kiss.innerHTML = "ummmmahh 😘😚";
+
+    kiss.style.left = Math.random() * 75 + "%";
+    kiss.style.top = Math.random() * 90 + "%";
+
+    screen.appendChild(kiss);
+
+    setTimeout(() => kiss.remove(), 1400);
+
+    count++;
+}, 15);
+</script>
+
+</body>
+</html>
